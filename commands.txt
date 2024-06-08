@@ -1,0 +1,7 @@
+To start the bot : /start
+
+To set the USDT balance : 下发280u  here 280 is USDT balance
+
+Set exchange rate : 汇率设置成功,当前汇率为: 105 
+
+add transation : +1000 

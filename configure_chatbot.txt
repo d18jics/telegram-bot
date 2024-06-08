@@ -1,0 +1,7 @@
+search for @botfather in telegram.
+
+create new bot following the instruction provided in the chat, give username, display name.
+
+copy code and put in the code.
+
+set the privacy to disable so that bot can read messages from group.
