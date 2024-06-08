@@ -2,7 +2,13 @@ from datetime import datetime
 import telebot
 import re
 
-BOT_TOKEN="6862875598:AAE7CO3vtm5q1ZWCDYzzP92GMJhcqmPVhJM"
+import os
+from dotenv import load_dotenv
+import pytz
+
+load_dotenv()
+
+BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 bot = telebot.TeleBot(BOT_TOKEN)
 
@@ -36,10 +42,13 @@ def get_msg_string():
     global usdt_balance
     global balance
 
-    current_time = datetime.now()
+    # Define the IST timezone
+    ist_timezone = pytz.timezone('Asia/Kolkata')
 
-    # Format the time to include only hours, minutes, and seconds
-    ctime = current_time.strftime("%H:%M:%S")
+    # Get the current time in IST
+    ist_now = datetime.now(ist_timezone)
+    ctime = ist_now.strftime("%H:%M:%S")
+
 
     cur_usdt = round(cur_balance/USDT_RATE, 2)
 
@@ -70,7 +79,7 @@ def usdt_logic(message):
 
 @bot.message_handler(commands=['start'])
 def start_bot(message):
-    bot.send_message(message.chat.id, "bot started.")
+    bot.send_message(message.chat.id, "机器人已激活,当前默认USDT 汇率为1,默认费率为0%,您可 以通过命令修改。")
 
 # initialise bot with usdt balance
 @bot.message_handler(regexp=r'设置汇率\d+')
