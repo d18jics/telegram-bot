@@ -31,8 +31,10 @@ def reset():
     global usdt_balance
     global balance
     global cur_balance
+    global txn_till_now
 
     USDT_BALANCE = 0
+    txn_till_now = 0
     ISSUED_BALANCE = 0
     usdt_balance = 0
     balance = 0
