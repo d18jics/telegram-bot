@@ -20,6 +20,7 @@ usdt_balance = 0
 balance = 0
 
 cur_balance = 0
+txn_till_now = 0
 
 # seperate command to add usdt
 # initialise usdt and balance = usdt* usdt rate
@@ -41,6 +42,7 @@ def reset():
 def get_msg_string():
     global usdt_balance
     global balance
+    global txn_till_now
 
     # Define the IST timezone
     ist_timezone = pytz.timezone('Asia/Kolkata')
@@ -51,6 +53,8 @@ def get_msg_string():
 
 
     cur_usdt = round(cur_balance/USDT_RATE, 2)
+    
+    txn_till_now += cur_balance
 
     usdt_balance -= cur_usdt
     balance -= cur_balance
@@ -61,7 +65,7 @@ def get_msg_string():
 总入款：{cur_balance} ({cur_usdt}U)
 汇率: {USDT_RATE}
 交易费率: 0% \n
-应下发：{cur_balance} | {cur_usdt}U
+应下发：{txn_till_now} | {round(txn_till_now/USDT_RATE, 2)}U
 已下发：{ISSUED_BALANCE}| {USDT_BALANCE}U
 未下发：-{balance} | -{round(usdt_balance,2)}U"""
 
